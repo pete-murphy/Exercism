@@ -1,3 +1,12 @@
+# Swap files
+*.swp
+*.swo
+
 # Haskell
 haskell/**/.stack-work
 
+# PureScript
+purescript/**/.pulp*
+purescript/**/bower_components
+purescript/**/output
+purescript/**/.psc*
