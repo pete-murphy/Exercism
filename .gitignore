@@ -10,3 +10,8 @@ purescript/**/.pulp*
 purescript/**/bower_components
 purescript/**/output
 purescript/**/.psc*
+
+# ReasonML
+reasonml/**/node_modules
+reasonml/**/lib
+reasonml/**/.merlin
