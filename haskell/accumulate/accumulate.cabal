@@ -1,0 +1,35 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.2.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 066958b4105d83cf88b86d4a661d235fe9c8570edb482984326f7ab9e4ea9951
+
+name:           accumulate
+version:        0.1.0.2
+build-type:     Simple
+
+library
+  exposed-modules:
+      Accumulate
+  other-modules:
+      Paths_accumulate
+  hs-source-dirs:
+      src
+  build-depends:
+      base
+  default-language: Haskell2010
+
+test-suite test
+  type: exitcode-stdio-1.0
+  main-is: Tests.hs
+  other-modules:
+      Paths_accumulate
+  hs-source-dirs:
+      test
+  build-depends:
+      accumulate
+    , base
+    , hspec
+  default-language: Haskell2010
