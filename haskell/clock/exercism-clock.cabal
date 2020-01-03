@@ -4,10 +4,10 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 3382060028ed5a7751d0f0fdb918f168b6ffde5b0fc74a70451e5bc6f406cabb
+-- hash: 5733a0263b13e5f1abb5fe99abab011c6e0bdb7d4538a2c1d4b91d2a5a635eb5
 
 name:           exercism-clock
-version:        2.3.0.8
+version:        2.4.0.9
 build-type:     Simple
 
 library
