@@ -6,8 +6,6 @@ module Clock
   , toString
   ) where
 
-import           Data.Function (on)
-
 data Clock =
   Clock Int Int
 
@@ -15,25 +13,19 @@ instance Show Clock where
   show = toString
 
 instance Eq Clock where
-  (==) = (==) `on` show
+  Clock h m == Clock h' m' = h == h' && m == m'
 
 fromHourMin :: Int -> Int -> Clock
-fromHourMin h m = Clock (h + m1) m2
+fromHourMin h m = Clock (((h + m1 - 1) `mod` 24) + 1) m2
   where
     (m1, m2) = divMod m 60
 
 toString :: Clock -> String
-toString (Clock h m) = padHours h ++ ":" ++ padMinutes m
+toString (Clock h m) = (pad h) ++ ":" ++ pad m
   where
-    padHours (show . flip mod 24 -> h')
-      | h' == "00" = "24"
-      | length h' > 1 = h'
-      | otherwise = '0' : h'
-    padMinutes (show . flip mod 60 -> m')
+    pad (show -> m')
       | length m' > 1 = m'
       | otherwise = '0' : m'
 
 addDelta :: Int -> Int -> Clock -> Clock
-addDelta hour min' (Clock h m) = Clock (h + hour + m1) m2
-  where
-    (m1, m2) = divMod (m + min') 60
+addDelta hour min' (Clock h m) = fromHourMin (h + hour) (m + min')
