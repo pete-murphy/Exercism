@@ -35,7 +35,9 @@ filter _ [] = []
 filter p (x:xs)
   | p x = x : ys
   | otherwise = ys
-    where ys = filter p xs
+  where
+    ys = filter p xs
+
 
 (++) :: [a] -> [a] -> [a]
 [] ++ ys = ys
