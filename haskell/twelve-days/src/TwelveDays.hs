@@ -1,36 +1,62 @@
-{-# LANGUAGE LambdaCase #-}
-
 module TwelveDays
-  ( recite
-  ) where
+  ( recite,
+  )
+where
 
 recite :: Int -> Int -> [String]
-recite start stop = map reciteLine [start .. stop]
+recite start end
+  | start > end = []
+  | otherwise =
+    let nth = nths !! (start - 1)
+        gs = reverse (take start gifts)
+     in reciteLine nth gs : recite (start + 1) end
 
-reciteLine :: Int -> String
-reciteLine n =
-  "On the " ++
-  nthDay ++ " day of Christmas my true love gave to me: " ++ go n ++ "."
+newtype Nth = Nth String
+
+newtype Gift = Gift String
+
+reciteLine :: Nth -> [Gift] -> String
+reciteLine (Nth nth) gifts = "On the " <> nth <> " day of Christmas my true love gave to me: " <> joinGifts gifts <> "."
+
+joinGifts :: [Gift] -> String
+joinGifts [Gift g] = g
+joinGifts gs = go gs
   where
-    (nthDay, _) = nth n
-    thing = snd . nth
-    go m
-      | n == 1 = thing n
-      | m == 1 = "and " ++ (thing m)
-      | otherwise = thing m ++ ", " ++ go (m - 1)
+    go [Gift g] = "and " <> g
+    go (Gift g : gs') = g <> ", " <> go gs'
 
-nth :: Int -> (String, String)
-nth =
-  \case
-    1 -> ("first", "a Partridge in a Pear Tree")
-    2 -> ("second", "two Turtle Doves")
-    3 -> ("third", "three French Hens")
-    4 -> ("fourth", "four Calling Birds")
-    5 -> ("fifth", "five Gold Rings")
-    6 -> ("sixth", "six Geese-a-Laying")
-    7 -> ("seventh", "seven Swans-a-Swimming")
-    8 -> ("eighth", "eight Maids-a-Milking")
-    9 -> ("ninth", "nine Ladies Dancing")
-    10 -> ("tenth", "ten Lords-a-Leaping")
-    11 -> ("eleventh", "eleven Pipers Piping")
-    _ -> ("twelfth", "twelve Drummers Drumming")
+gifts :: [Gift]
+gifts =
+  map
+    Gift
+    [ "a Partridge in a Pear Tree",
+      "two Turtle Doves",
+      "three French Hens",
+      "four Calling Birds",
+      "five Gold Rings",
+      "six Geese-a-Laying",
+      "seven Swans-a-Swimming",
+      "eight Maids-a-Milking",
+      "nine Ladies Dancing",
+      "ten Lords-a-Leaping",
+      "eleven Pipers Piping",
+      "twelve Drummers Drumming"
+    ]
+
+nths :: [Nth]
+nths =
+  map
+    Nth
+    [ "first",
+      "second",
+      "third",
+      "fourth",
+      "fifth",
+      "sixth",
+      "seventh",
+      "eighth",
+      "ninth",
+      "tenth",
+      "eleventh",
+      "twelfth"
+    ]

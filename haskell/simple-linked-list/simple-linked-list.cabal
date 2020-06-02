@@ -4,35 +4,34 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 720cd32436d503e9ff1fa4fb3821fdc7fb0444503834a847002744d245c04cdf
+-- hash: 467c815d1aac7140687deb33b1846e63eed4926945b3b6a35350f14888f559b0
 
-name:           wordy
-version:        1.5.0.8
+name:           simple-linked-list
+version:        0.1.0.3
 build-type:     Simple
 
 library
   exposed-modules:
-      WordProblem
+      LinkedList
   other-modules:
-      Parsing
-      Paths_wordy
+      Paths_simple_linked_list
   hs-source-dirs:
       src
   ghc-options: -Wall
   build-depends:
       base
-    , semigroupoids
   default-language: Haskell2010
 
 test-suite test
   type: exitcode-stdio-1.0
   main-is: Tests.hs
   other-modules:
-      Paths_wordy
+      Paths_simple_linked_list
   hs-source-dirs:
       test
   build-depends:
-      base
+      QuickCheck
+    , base
     , hspec
-    , wordy
+    , simple-linked-list
   default-language: Haskell2010
