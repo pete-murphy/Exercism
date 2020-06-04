@@ -3,6 +3,7 @@ version: 1.0.0.4
 
 dependencies:
   - base
+  - criterion
 
 library:
   exposed-modules: BST

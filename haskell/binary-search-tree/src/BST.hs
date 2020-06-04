@@ -10,6 +10,8 @@ module BST
     insert,
     singleton,
     toList,
+    toList',
+    toList'',
   )
 where
 
@@ -51,4 +53,11 @@ singleton :: a -> BST a
 singleton x = Node Leaf x Leaf
 
 toList :: BST a -> [a]
-toList = foldMap (: [])
+toList = foldr (:) []
+
+toList' :: BST a -> [a]
+toList' = foldMap (: [])
+
+toList'' :: BST a -> [a]
+toList'' Leaf = []
+toList'' (Node l val r) = toList'' l ++ [val] ++ toList'' r
