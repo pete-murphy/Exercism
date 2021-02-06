@@ -1,13 +1,13 @@
 pub fn raindrops(n: u32) -> String {
   let mut str = String::from("");
   if n % 3 == 0 {
-    str = str + "Pling"
+    str += "Pling"
   }
   if n % 5 == 0 {
-    str = str + "Plang"
+    str += "Plang"
   }
   if n % 7 == 0 {
-    str = str + "Plong"
+    str += "Plong"
   }
   if str == "" {
     str = n.to_string()
